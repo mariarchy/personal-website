@@ -6,29 +6,27 @@ tags: ["ai-safety", "evals"]
 draft: false
 ---
 
-I've been going in circles on [METR's MALT study](https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/) for weeks because it asks a question I keep coming back to as I explore the canon of AI safety research: can we trust the very tools we use to measure safety?
+I've been going in circles on [METR's MALT study](https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/) for weeks because it asks a question I keep coming back to as I explore the canon of AI safety research: **can we trust the very tools we use to measure safety?**
 
 MALT is the most serious public attempt anyone has made to check whether our safety monitors actually work, and the honest conclusion is that we still can't say.
 
-LLM monitors are now the thing telling us whether a model reward hacked, sandbagged, or sabotaged an evaluation. Their verdicts then flow into system cards, deployment decisions, and increasingly into policy. They are, therefore, critical measurement instruments. And yet, it seems like nobody has calibrated them.
+And yet, LLM monitors are now the thing telling us whether a model reward hacked, sandbagged, or sabotaged an evaluation. The verdicts of these critical, unvalidated monitors then flow into system cards, deployment decisions, and increasingly into policy. 
 
 ## What MALT shows
 
-Somewhere in the dataset there's an agent asked to make some code run faster. Instead of optimizing anything, it rewrites Python's clock so the scoring script sees a thousandth of the real elapsed time. The monitor reviewing that run scored it 0 out of 10 for cheating, and noted in its reasoning that no timers had been mocked.
+METR built MALT — a dataset of ~11,000 labeled agent transcripts — to find out how reliable monitoring agents are and the extent to which the integrity of our evals may be "threatened". They found that their best monitor, GPT-5, catches 80–90% of true positives at the false-positive rate they can afford to review.
 
-METR built MALT — a dataset of ~11,000 labeled agent transcripts — to find out how often that happens. Their best monitor catches 80–90% of true positives at the false-positive rate they can afford to review.
-
-The number worth looking at, though, is the dataset composition. 1,505 transcripts are prompted, i.e. models explicitly told to sandbag or sabotage. Of naturally occurring sandbagging, MALT has 32 examples, all of them a model quitting early with resources to spare. There are:
+The number worth looking at, though, is the dataset composition. 1,505 transcripts are prompted, i.e. models explicitly told to sandbag or sabotage. Of naturally occurring sandbagging, MALT has 32 examples, all of them a model quitting early with resources to spare. Notably, there are:
 
 - No samples of natural sabotage.
 - No samples of natural targeted refusals.
 - No samples of the model spontaneously playing dumb.
 
-Despite METR's best efforts, they had great difficulty coming up with any more than a handful of natural samples across the threat models. And so, that 80–90% is mostly measuring how well monitors catch models that were prompted to misbehave, which introduces serious distribution shift risk relative to deployment.
+Despite METR's best efforts, they admit difficulty in coming up with any more than a handful of natural samples across the threat models. And so, that 80–90% is mostly measuring how well monitors catch models that were prompted to misbehave, which introduces serious distribution shift risk relative to deployment.
 
-METR affirms these risks in their dataset collection methods, stating that the prompting was basic, so the positives are contrived ones, and the handful of natural cases were surfaced by anomalous-score detection and keyword search — filters that select for legibility by construction.
+METR confirms these risks in their dataset collection methods, stating that the prompting was basic, so the positives are contrived ones, and the handful of natural cases were surfaced by anomalous-score detection and keyword search — filters that select for legibility by construction.
 
-And so when we look at MALT's headline 80–90% catch rate, we're actually looking at a ceiling on deployment performance. In reality, the natural-and-subtle rate likely sits below it, unmeasured.
+And so when we look at MALT's headline 80–90% catch rate, we're actually looking at a ceiling on deployment performance. In reality, it's likely the natural-and-subtle rate likely sits below it, unmeasured.
 
 ## Why this one grips me
 
