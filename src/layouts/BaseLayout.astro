@@ -11,7 +11,7 @@ interface Props {
 
 const { title, description, type = 'website' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const pageTitle = title === 'Mariarchy' ? title : `${title} — Mariarchy`;
+const pageTitle = title === 'the mariarchy' ? title : `${title} — the mariarchy`;
 ---
 
 <html lang="en">
@@ -20,7 +20,7 @@ const pageTitle = title === 'Mariarchy' ? title : `${title} — Mariarchy`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="alternate" type="application/rss+xml" title="Mariarchy" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="the mariarchy" href="/rss.xml" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
