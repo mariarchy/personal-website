@@ -1,0 +1,43 @@
+---
+import SocialLink from './SocialLink.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="row">
+    <p>&copy; {year} Mariarchy</p>
+    <p class="links">
+      <SocialLink href="https://linkedin.com/in/marissajliu" label="LinkedIn" />
+      <SocialLink href="https://github.com/mariarchy" label="GitHub" />
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: var(--space-5) var(--space-3) var(--space-4);
+  }
+
+  .row {
+    max-width: var(--measure-wide);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-3);
+  }
+</style>

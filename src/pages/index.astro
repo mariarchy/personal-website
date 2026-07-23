@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLink from '../components/SocialLink.astro';
+
+const description =
+  "Senior software engineer, jazz guitarist, and — as of late — prolific journaler. Currently pivoting into AI safety research.";
+---
+
+<BaseLayout title="Mariarchy" description={description}>
+  <section class="hero">
+    <h1>Mariarchy</h1>
+    <p class="bio">
+      Hiya! My name is Marissa and I'm a senior software engineer, jazz guitarist, and — as of
+      late — prolific journaler (navel-gazer). I've built platforms that have chugged billions of
+      rows of data and more emissions than the country of Japan. I've played at jazz jams across
+      the city (my palms still sweat whenever I get on the stage). And in recent months, I've been
+      deep in a pivot into AI safety research.
+    </p>
+    <p class="links">
+      <SocialLink href="https://linkedin.com/in/marissajliu" label="LinkedIn" />
+      <SocialLink href="https://github.com/mariarchy" label="GitHub" />
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-3);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .bio {
+    font-size: 1.15rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-3);
+    font-size: 1rem;
+  }
+</style>
