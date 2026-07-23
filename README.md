@@ -41,9 +41,12 @@ The filename becomes the URL slug (e.g. `on-unvalidated-measurements.md` → `/b
 
 ## Deployment
 
-Hosted on **Cloudflare Pages**, connected directly to this GitHub repo: every push to `main` builds (`npm run build`) and deploys automatically, with preview deployments on other branches. No separate deploy step or workflow file needed.
+Hosted on Cloudflare, connected directly to this GitHub repo via **Workers Builds** (Cloudflare's current recommended path for new projects, ahead of classic Pages): every push to `main` runs the build command then the deploy command below, with preview deploys on other branches.
 
-`astro.config.mjs`'s `site` value must match whatever domain is actually attached in the Cloudflare Pages dashboard — update it there if the domain changes.
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+
+`wrangler.jsonc` points the deploy at the static build output (`./dist`); `npm run deploy` runs the same deploy command locally if needed. `astro.config.mjs`'s `site` value must match whatever domain is actually attached to the Workers project — update it there if the domain changes.
 
 ## Deliberately not here yet
 
