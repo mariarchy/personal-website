@@ -81,6 +81,11 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
     margin-top: var(--space-4);
   }
 
+  .prose :global(h3) {
+    font-size: 1.15rem;
+    font-weight: 650;
+  }
+
   .prose :global(p) {
     margin: 0 0 var(--space-3);
   }
@@ -89,30 +94,215 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
     color: var(--color-maroon-accent);
   }
 
-  .prose :global(blockquote) {
-    margin: var(--space-3) 0;
-    padding-left: var(--space-3);
-    border-left: 2px solid var(--color-border);
-    font-style: italic;
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 var(--space-3);
+    padding-left: 1.35em;
   }
 
-  .prose :global(code) {
-    font-size: 0.9em;
-    background: rgba(52, 7, 12, 0.06);
-    padding: 0.15em 0.35em;
+  .prose :global(li) {
+    margin-bottom: 0.4em;
+  }
+
+  .prose :global(li > ul),
+  .prose :global(li > ol) {
+    margin: 0.35em 0 0;
+  }
+
+  .prose :global(blockquote) {
+    margin: var(--space-3) 0;
+    padding: 0.15em 0 0.15em var(--space-3);
+    border-left: 2px solid var(--color-border);
+    font-style: italic;
+    color: hsl(355 40% 22% / 0.88);
+  }
+
+  /* Inline identifiers (`malt-eval`, file paths, operators) should wrap, not
+     blow out the measure. Fenced blocks opt out via `pre code` below. */
+  .prose :global(:not(pre) > code) {
+    font-family: var(--font-mono);
+    font-size: 0.84em;
+    font-style: normal;
+    background: rgba(52, 7, 12, 0.07);
+    padding: 0.12em 0.38em;
     border-radius: 3px;
+    word-break: break-word;
   }
 
   .prose :global(pre) {
-    padding: var(--space-2);
+    position: relative;
+    margin: 0 0 var(--space-3);
+    padding: 0.9rem 1rem;
     overflow-x: auto;
-    border-radius: 4px;
-    background: rgba(52, 7, 12, 0.06);
+    border-radius: 6px;
+    border: 1px solid hsl(36 30% 35% / 0.28);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .prose :global(pre:focus-visible) {
+    outline: 2px solid var(--color-maroon-accent);
+    outline-offset: 2px;
   }
 
   .prose :global(pre code) {
+    font-family: var(--font-mono);
     background: none;
     padding: 0;
+    font-size: inherit;
+    display: grid;
+    min-width: 100%;
+  }
+
+  .prose :global(pre .line) {
+    display: inline-block;
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0 -1rem;
+    min-height: 1.55em;
+  }
+
+  .prose :global(pre[data-title]) {
+    padding-top: 2.55rem;
+  }
+
+  .prose :global(pre[data-title]::before) {
+    content: attr(data-title);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 0.4rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.01em;
+    color: var(--color-maroon-accent);
+    background: rgba(52, 7, 12, 0.05);
+    border-bottom: 1px solid hsl(36 30% 35% / 0.22);
+  }
+
+  .prose :global(pre:not([data-title])[data-language]::before) {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.45rem;
+    right: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-maroon-accent);
+    opacity: 0.65;
+  }
+
+  .prose :global(pre .line.highlighted),
+  .prose :global(pre .highlighted-word) {
+    background: hsl(355 55% 28% / 0.1);
+  }
+
+  .prose :global(pre .highlighted-word) {
+    border-radius: 2px;
+    padding: 0.05em 0.12em;
+    box-decoration-break: clone;
+  }
+
+  .prose :global(pre .line.diff.add) {
+    background: hsl(145 35% 40% / 0.14);
+  }
+
+  .prose :global(pre .line.diff.remove) {
+    background: hsl(355 45% 40% / 0.12);
+  }
+
+  .prose :global(pre.has-diff .line.diff::before) {
+    display: inline-block;
+    width: 1.1em;
+    margin-right: 0.35em;
+    font-family: var(--font-mono);
+    user-select: none;
+  }
+
+  .prose :global(pre.has-diff .line.diff.add::before) {
+    content: '+';
+    color: hsl(145 45% 28%);
+  }
+
+  .prose :global(pre.has-diff .line.diff.remove::before) {
+    content: '−';
+    color: var(--color-maroon-accent);
+  }
+
+  .prose :global(.table-scroll) {
+    margin: 0 0 var(--space-3);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid hsl(36 30% 35% / 0.28);
+    border-radius: 6px;
+  }
+
+  .prose :global(table) {
+    width: 100%;
+    margin: 0 0 var(--space-3);
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid hsl(36 30% 35% / 0.28);
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .prose :global(thead th:first-child) {
+    border-top-left-radius: 5px;
+  }
+
+  .prose :global(thead th:last-child) {
+    border-top-right-radius: 5px;
+  }
+
+  .prose :global(thead th) {
+    text-align: left;
+    font-weight: 650;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-maroon-accent);
+    background: rgba(52, 7, 12, 0.05);
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid hsl(36 30% 35% / 0.28);
+    white-space: nowrap;
+  }
+
+  .prose :global(tbody th) {
+    text-align: left;
+    font-weight: 600;
+    padding: 0.6rem 0.85rem;
+    border-bottom: 1px solid hsl(36 30% 35% / 0.16);
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  .prose :global(td) {
+    padding: 0.6rem 0.85rem;
+    border-bottom: 1px solid hsl(36 30% 35% / 0.16);
+    vertical-align: top;
+    overflow-wrap: anywhere;
+  }
+
+  .prose :global(th[align="right"]),
+  .prose :global(td[align="right"]) {
+    text-align: right;
+  }
+
+  .prose :global(tbody tr:last-child th),
+  .prose :global(tbody tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .prose :global(tbody tr:hover) {
+    background: rgba(52, 7, 12, 0.035);
   }
 
   .prose :global(hr) {
@@ -129,5 +319,14 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
     padding-top: var(--space-3);
     border-top: 1px solid var(--color-border);
     font-size: 0.95rem;
+  }
+
+  .prose :global(section[data-footnotes] > h2) {
+    font-size: 0.95rem;
+    margin-top: 0;
+  }
+
+  .prose :global(section[data-footnotes] > hr) {
+    display: none;
   }
 </style>
