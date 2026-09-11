@@ -16,6 +16,13 @@ import { transformerHashNotations } from './src/lib/shiki-notations.js';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mariarchy.com',
+  redirects: {
+    '/cv': {
+      status: 302,
+      destination:
+        'https://drive.google.com/file/d/1TdYFbNr2Nzo6wVFgBhGeC6D0O5y3QBIX/view?usp=sharing',
+    },
+  },
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
