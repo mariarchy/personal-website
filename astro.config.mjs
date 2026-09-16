@@ -20,7 +20,7 @@ export default defineConfig({
     '/cv': {
       status: 302,
       destination:
-        'https://drive.google.com/file/d/1TdYFbNr2Nzo6wVFgBhGeC6D0O5y3QBIX/view?usp=sharing',
+        'https://drive.google.com/file/d/1JN9Hw03YDheRc1wAbQyhRsMW9hBQioEc/view?usp=sharing',
     },
   },
   integrations: [sitemap()],
