@@ -103,4 +103,4 @@ The belief implantation is not yet robust. I’d explore the corpora for imbalan
 
 This is one model, one authority pairing, and one coding feature. I have not replicated other Python features, honesty-versus-promise-breaking tasks, or comparisons across RL checkpoints. The task-bootstrap interval measures uncertainty over tasks for these fitted models; it does not measure variation across fresh SDF training runs.
 
-**Code:** [Contrastive SDF exploration](https://github.com/mariarchy/Contrastive-SDF-exploration).
+**Artifacts:** [Full results and interactive viewer](https://mariarchy.github.io/Contrastive-SDF-exploration/huggingface-sdf-v1/viewer.html) · [Code](https://github.com/mariarchy/Contrastive-SDF-exploration).
